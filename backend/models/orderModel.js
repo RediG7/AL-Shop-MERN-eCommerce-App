@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema(
   {
@@ -73,6 +73,6 @@ const orderSchema = mongoose.Schema(
   }
 );
 
-const Order = mongoose.Model("Order", orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 
 export default Order;
