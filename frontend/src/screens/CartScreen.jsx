@@ -16,7 +16,7 @@ import {
   Card,
 } from "react-bootstrap";
 import Message from "../components/Message";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 
 const CartScreen = () => {
   let { id } = useParams();
@@ -37,7 +37,7 @@ const CartScreen = () => {
   }, [dispatch, id, qty]);
 
   const removeFromCartHandler = (id) => {
-    console.log("Remove " + id);
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
@@ -101,8 +101,8 @@ const CartScreen = () => {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty * 1, 0)})
-                items
+                Subtotal (
+                {cartItems.reduce((acc, item) => acc + item.qty * 1, 0)}) items
               </h2>
               $
               {cartItems
