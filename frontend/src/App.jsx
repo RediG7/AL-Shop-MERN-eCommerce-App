@@ -17,7 +17,8 @@ const App = () => {
               <Route path="/" element={<HomeScreen />} />
               <Route path="/product/:id" element={<ProductScreen />} />
               {/* /cart/:id? -> the id is optional, because we can also go to just /cart route */}
-              <Route path="/cart/:id?" element={<CartScreen />} />
+              <Route path="/cart/:id" element={<CartScreen />} />
+              <Route path="/cart" element={<CartScreen />} />
             </Routes>
           </Container>
         </main>
