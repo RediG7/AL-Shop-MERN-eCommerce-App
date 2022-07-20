@@ -15,7 +15,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { listProductDetails } from "../actions/productActions";
 
-const ProductScreen = (props) => {
+const ProductScreen = () => {
   const [qty, setQty] = useState(1);
 
   const dispatch = useDispatch();
