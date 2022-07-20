@@ -10,7 +10,7 @@ import { login } from "../actions/userActions";
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   let navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -19,10 +19,15 @@ const LoginScreen = () => {
   const { loading, error, userInfo } = userLogin;
 
   const redirect = searchParams.get("redirect");
+  console.log(redirect);
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      if (redirect !== null) {
+        navigate("../" + redirect, { replace: true });
+      } else {
+        navigate("/");
+      }
     }
   }, [navigate, redirect, userInfo]);
 
@@ -64,7 +69,7 @@ const LoginScreen = () => {
       <Row className="py-3">
         <Col>
           New Customer?{" "}
-          <Link to={redirect ? `/register?redirect={redirect}` : "/register"}>
+          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
             Register
           </Link>
         </Col>

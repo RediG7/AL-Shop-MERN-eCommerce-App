@@ -20,7 +20,7 @@ import { addToCart, removeFromCart } from "../actions/cartActions";
 
 const CartScreen = () => {
   let { id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   let navigate = useNavigate();
 
   const qty = searchParams.get("qty");

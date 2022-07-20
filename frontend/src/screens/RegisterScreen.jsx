@@ -14,7 +14,7 @@ const RegisterScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   let navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const RegisterScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate(redirect);
     }
   }, [navigate, redirect, userInfo]);
 
@@ -93,7 +93,7 @@ const RegisterScreen = () => {
       <Row className="py-3">
         <Col>
           Already have an Account?{" "}
-          <Link to={redirect ? `/login?redirect={redirect}` : "/login"}>
+          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
             Login
           </Link>
         </Col>
