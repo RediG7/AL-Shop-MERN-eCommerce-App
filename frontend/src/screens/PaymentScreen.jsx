@@ -34,7 +34,7 @@ const PaymentScreen = () => {
         <Form.Group>
           <Form.Label as="legend">Select Method</Form.Label>
 
-          <Col>
+          <Col className="mb-3">
             <Form.Check
               type="radio"
               label="PayPal or Credit Card"
