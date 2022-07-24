@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { logout } from "../actions/userActions";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -11,8 +12,11 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  let navigate = useNavigate();
+
   const logoutHandler = () => {
     dispatch(logout());
+    navigate("../login");
   };
 
   return (
@@ -51,10 +55,10 @@ const Header = () => {
                   <LinkContainer to="/admin/user-list">
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to="/admin/product-list">
+                  <LinkContainer to="admin/product-list">
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to="/admin/order-list">
+                  <LinkContainer to="admin/order-list">
                     <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { LinkContainer, linkContainer } from "react-router-bootstrap";
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { LinkContainer } from "react-router-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
@@ -10,12 +10,21 @@ import { listUsers } from "../actions/userActions";
 const UserListScreen = () => {
   const dispatch = useDispatch();
 
+  let navigate = useNavigate();
+
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
-    dispatch(listUsers());
-  }, [dispatch]);
+    if (userInfo && userInfo.isAdmin) {
+      dispatch(listUsers());
+    } else {
+      navigate("../login");
+    }
+  }, [dispatch, navigate, userInfo]);
 
   const deleteHandler = (id) => {
     console.log("delete " + id);
@@ -40,12 +49,17 @@ const UserListScreen = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
+            {users.map((user, idx) => (
+              <tr key={idx}>
                 <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>
-                  <a href={`mailto:${user.email}`}>{user.email}</a>
+                  <a
+                    style={{ textDecoration: "none" }}
+                    href={`mailto:${user.email}`}
+                  >
+                    {user.email}
+                  </a>
                 </td>
                 <td>
                   {user.isAdmin ? (

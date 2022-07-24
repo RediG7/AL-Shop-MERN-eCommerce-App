@@ -33,17 +33,17 @@ const ProfileScreen = () => {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate("/login");
+      navigate("../login");
     } else {
       if (!user.name) {
-        dispatch(getUserDetails("profile"));
         dispatch(listMyOrders());
+        dispatch(getUserDetails("profile"));
       } else {
         setName(user.name);
         setEmail(user.email);
       }
     }
-  }, [dispatch, navigate, userInfo, user]);
+  }, [dispatch, navigate, userInfo, user.name, user.email]);
 
   const submitHandler = (e) => {
     e.preventDefault();
