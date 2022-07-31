@@ -151,10 +151,7 @@ const updateUser = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
-    // Optional
-    if (req.body.isAdmin) {
-      user.isAdmin = req.body.isAdmin;
-    }
+    user.isAdmin = req.body.isAdmin;
     // Change user password (like a reset)
     if (req.body.password) {
       user.password = req.body.password;
