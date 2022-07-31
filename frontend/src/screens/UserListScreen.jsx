@@ -15,8 +15,6 @@ const UserListScreen = () => {
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
-  console.log(users);
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
