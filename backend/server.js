@@ -32,8 +32,8 @@ app.get("/api/config/paypal", (req, res) =>
 
 // Making uploads folder static so it is accessible on the browser
 // Because __dirname is only available with CommonJS, but we're using Modules so we do path.resolve() which does the same (point to the current directory).
-const __dirname = path.resolve;
-app.use("/uploads", express.static(path.join(__dirname)));
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.use(notFound);
 
