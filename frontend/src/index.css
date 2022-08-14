@@ -19,3 +19,8 @@ h2 {
 .rating span {
   margin: 0.1rem;
 }
+
+/* Override the table inherited layout */
+.table > tbody {
+  vertical-align: middle;
+}
