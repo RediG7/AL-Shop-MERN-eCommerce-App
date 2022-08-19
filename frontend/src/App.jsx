@@ -33,6 +33,7 @@ const App = () => {
               <Route path="/register" element={<RegisterScreen />} />
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/profile" element={<ProfileScreen />} />
+              <Route path="/search/:keyword" element={<HomeScreen />} />
               <Route path="/" element={<HomeScreen />} />
               <Route path="/product/:id" element={<ProductScreen />} />
               {/* /cart/:id? -> the id is optional, because we can also go to just /cart route */}
