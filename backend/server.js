@@ -1,6 +1,7 @@
 import path from "path";
 import express from "express";
 import dotenv from "dotenv";
+import morgan from "morgan";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 
@@ -14,6 +15,11 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
 // Accept JSON data in the body (req.body)
 app.use(express.json());
 
@@ -32,8 +38,8 @@ app.get("/api/config/paypal", (req, res) =>
 
 // Making uploads folder static so it is accessible on the browser
 // Because __dirname is only available with CommonJS, but we're using Modules so we do path.resolve() which does the same (point to the current directory).
-const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use(notFound);
 
