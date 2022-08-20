@@ -34,6 +34,11 @@ const App = () => {
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/profile" element={<ProfileScreen />} />
               <Route path="/search/:keyword" element={<HomeScreen />} />
+              <Route path="/page/:pageNumber" element={<HomeScreen />} />
+              <Route
+                path="/search/:keyword/:page/:pageNumber"
+                element={<HomeScreen />}
+              />
               <Route path="/" element={<HomeScreen />} />
               <Route path="/product/:id" element={<ProductScreen />} />
               {/* /cart/:id? -> the id is optional, because we can also go to just /cart route */}
@@ -41,6 +46,10 @@ const App = () => {
               <Route path="/admin/user-list" element={<UserListScreen />} />
               <Route
                 path="/admin/product-list"
+                element={<ProductListScreen />}
+              />
+              <Route
+                path="/admin/product-list/:pageNumber"
                 element={<ProductListScreen />}
               />
               <Route path="/admin/order-list" element={<OrderListScreen />} />
